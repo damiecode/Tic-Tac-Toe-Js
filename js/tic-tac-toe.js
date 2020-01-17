@@ -1,11 +1,13 @@
+/*jshint esversion: 6 */
+
 const GameBoard = (() => {
-  let board = ['X','','','','X','','','X',''];
+  let board = ['X','O','','O','X','','','X',''];
   return { board };
 })();
 
 const PlayerFactory = (name, symbol) => {
   return { name, symbol };
-}
+};
 
 const Game = (() => {
   const winCombinations = (arr) => {
@@ -32,6 +34,18 @@ const Game = (() => {
 
     return result;
   };
-  return { winCombinations }
+
+  return { winCombinations };
 })();
 
+const DisplayController = (() => {
+  const renderBoard = () => {
+    let cells = document.querySelectorAll('.cell');
+    cells.forEach(cell => {
+      let index = cell.getAttribute('data-cell');
+      cell.innerHTML = GameBoard.board[index];
+    });
+  };
+  window.addEventListener('load', renderBoard);
+  return { renderBoard };
+})();

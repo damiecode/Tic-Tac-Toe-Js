@@ -91,7 +91,7 @@ const Game = (() => {
   const startGame = document.querySelector('.startGame');
   startGame.addEventListener('click', () => {
     document.getElementById('players_form').style.display = 'block';
-    this.style.display = 'none';
+    startGame.style.display = 'none';
   });
 
   const restartGame = document.querySelector('.restartGame');

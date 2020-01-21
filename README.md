@@ -6,6 +6,9 @@
 
 Additional description about the project and its features.
 
+## Link to Project
+[OdinProject](https://www.theodinproject.com/courses/javascript/lessons/tic-tac-toe-javascript)
+
 ## Built With
 
 - HTML/CSS,

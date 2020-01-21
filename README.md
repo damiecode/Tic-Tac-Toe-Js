@@ -1,4 +1,4 @@
-# Library Project - [Microverse - JavaScript Course]
+# Tic Tac Toe Project - [Microverse - JavaScript Course]
 
 > ​ The Library project is aimed at applying the knowledge of javascript OOP and basic HTML/CSS to create a library page in which you can add, remove and track the progress of your books. ​
 

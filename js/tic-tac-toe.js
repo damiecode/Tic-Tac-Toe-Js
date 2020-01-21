@@ -1,28 +1,26 @@
-/*jshint esversion: 6 */
+/* jshint esversion: 6 */
 
 const GameBoard = (() => {
-  let board = ['X','O','','O','X','','','X',''];
+  const board = ['', '', '', '', '', '', '', '', ''];
   return { board };
 })();
 
-const PlayerFactory = (name, symbol) => {
-  return { name, symbol };
-};
+const PlayerFactory = (name, symbol) => ({ name, symbol });
 
 const Game = (() => {
-  let player1 = PlayerFactory('', 'X');
-  let player2 = PlayerFactory('', 'O');
+  const player1 = PlayerFactory('', 'X');
+  const player2 = PlayerFactory('', 'O');
   let currentPlayer = player1;
 
   const winCombinations = (arr) => {
     let result = false;
-    [0, 3, 6].forEach(i => {
-      if(arr[i] === arr[i+1] && arr[i] === arr[i + 2] && arr[i] !== '') {
+    [0, 3, 6].forEach((i) => {
+      if (arr[i] === arr[i + 1] && arr[i] === arr[i + 2] && arr[i] !== '') {
         result = true;
       }
     });
 
-    [0, 1, 2].forEach(i => {
+    [0, 1, 2].forEach((i) => {
       if (arr[i] === arr[i + 3] && arr[i] === arr[i + 6] && arr[i] !== '') {
         result = true;
       }
@@ -39,27 +37,34 @@ const Game = (() => {
     return result;
   };
   const play = (event) => {
-    let button = event.target;
-    let index = button.getAttribute('data-cell');
+    const button = event.target;
+    const index = button.getAttribute('data-cell');
     if (GameBoard.board[index] === '') {
-      GameBoard.board[index] = currentPlayer.symbol;
-      if (currentPlayer === player1) {
-        currentPlayer = player2;
+      GameBoard.board[index] = Game.currentPlayer.symbol;
+      const winCheck = winCombinations(GameBoard.board);
+      if (winCheck) {
+        DisplayController.renderGameResult('win');
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach((cell) => cell.removeEventListener('click', play));
+      } else if (!GameBoard.board.includes('')) {
+        DisplayController.renderGameResult('draw');
       } else {
-        currentPlayer = player1;
+        Game.currentPlayer = (Game.currentPlayer === player1) ? player2 : player1;
       }
-      DisplayController.renderBoard();
     }
+
+    DisplayController.renderBoard();
   };
+
   const createPlayers = (event) => {
-    let player1Name = document.getElementById('player1_name').value;
-    let player2Name = document.getElementById('player2_name').value;
+    const player1Name = document.getElementById('player1_name').value;
+    const player2Name = document.getElementById('player2_name').value;
 
     player1.name = player1Name;
     player2.name = player2Name;
     const form = document.getElementById('players_form');
     form.reset();
-    form.style.display = "none";
+    form.style.display = 'none';
     DisplayController.renderPlayers();
   };
 
@@ -69,26 +74,37 @@ const Game = (() => {
   const newPlayerbtn = document.querySelector('.addPlayers');
   newPlayerbtn.addEventListener('click', createPlayers);
 
-  return { winCombinations, player1, player2 };
+  return {
+    winCombinations, player1, player2, currentPlayer,
+  };
 })();
 
 const DisplayController = (() => {
   const renderBoard = () => {
-    let cells = document.querySelectorAll('.cell');
-    cells.forEach(cell => {
-      let index = cell.getAttribute('data-cell');
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach((cell) => {
+      const index = cell.getAttribute('data-cell');
       cell.innerHTML = GameBoard.board[index];
     });
   };
 
-  const renderPlayers = () =>{
-    let divPlayers = document.querySelector('.players');
+  const renderPlayers = () => {
+    const divPlayers = document.querySelector('.players');
     divPlayers.innerHTML = `
     <p>Player 'X': ${Game.player1.name}</p>
     <p>Player 'O': ${Game.player2.name}</p>
     `;
   };
 
+  const renderGameResult = (exitCond) => {
+    const gameResult = document.querySelector('.game_result');
+    if (exitCond==='win') {
+      gameResult.innerHTML = `${Game.currentPlayer.name} (${Game.currentPlayer.symbol}) wins the game!`;
+    } else if (exitCond === 'draw') {
+      gameResult.innerHTML = "It's a Draw!";
+    }
+  };
+
   window.addEventListener('load', renderBoard);
-  return { renderBoard, renderPlayers };
+  return { renderBoard, renderPlayers, renderGameResult };
 })();

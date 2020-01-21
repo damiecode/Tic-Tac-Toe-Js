@@ -1,16 +1,17 @@
-/* jshint esversion: 6 */
+/* eslint-disable no-use-before-define */
+/* eslint-env browser */
 
 const GameBoard = (() => {
   const board = ['', '', '', '', '', '', '', '', ''];
   return { board };
 })();
 
-const PlayerFactory = (name, symbol,score) => ({ name, symbol, score });
+const PlayerFactory = (name, symbol, score) => ({ name, symbol, score });
 
 const Game = (() => {
   const player1 = PlayerFactory('', 'X', 0);
   const player2 = PlayerFactory('', 'O', 0);
-  let currentPlayer = player1;
+  const currentPlayer = player1;
 
   const winCombinations = (arr) => {
     let result = false;
@@ -43,7 +44,7 @@ const Game = (() => {
       GameBoard.board[index] = Game.currentPlayer.symbol;
       const winCheck = winCombinations(GameBoard.board);
       if (winCheck) {
-        Game.currentPlayer.score++;
+        Game.currentPlayer.score += 1;
         DisplayController.renderGameResult('win');
         const cells = document.querySelectorAll('.cell');
         cells.forEach((cell) => cell.removeEventListener('click', play));
@@ -58,7 +59,7 @@ const Game = (() => {
     DisplayController.renderPlayers();
   };
 
-  const createPlayers = (event) => {
+  const createPlayers = () => {
     const player1Name = document.getElementById('player1_name').value;
     const player2Name = document.getElementById('player2_name').value;
 
@@ -79,7 +80,7 @@ const Game = (() => {
     DisplayController.renderBoard();
     const cells = document.querySelectorAll('.cell');
     cells.forEach((cell) => cell.addEventListener('click', play));
-  }; 
+  };
 
   const cells = document.querySelectorAll('.cell');
   cells.forEach((cell) => cell.addEventListener('click', play));
@@ -88,13 +89,13 @@ const Game = (() => {
   newPlayerbtn.addEventListener('click', createPlayers);
 
   const startGame = document.querySelector('.startGame');
-  startGame.addEventListener('click', function(){
+  startGame.addEventListener('click', () => {
     document.getElementById('players_form').style.display = 'block';
     this.style.display = 'none';
   });
 
   const restartGame = document.querySelector('.restartGame');
-  restartGame.addEventListener('click',resetGame);
+  restartGame.addEventListener('click', resetGame);
 
   return {
     winCombinations, player1, player2, currentPlayer,
@@ -120,7 +121,7 @@ const DisplayController = (() => {
 
   const renderGameResult = (exitCond) => {
     const gameResult = document.querySelector('.game_result');
-    if (exitCond==='win') {
+    if (exitCond === 'win') {
       gameResult.innerHTML = `${Game.currentPlayer.name} (${Game.currentPlayer.symbol}) wins the game!`;
     } else if (exitCond === 'draw') {
       gameResult.innerHTML = "It's a Draw!";

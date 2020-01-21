@@ -63,16 +63,32 @@ const Game = (() => {
     player1.name = player1Name;
     player2.name = player2Name;
     const form = document.getElementById('players_form');
+    const board = document.getElementById('board');
     form.reset();
     form.style.display = 'none';
+    board.style.display = 'block';
     DisplayController.renderPlayers();
   };
+
+  const resetGame = () => {
+    GameBoard.board = ['', '', '', '', '', '', '', '', ''];
+    DisplayController.renderBoard();
+  };  
 
   const cells = document.querySelectorAll('.cell');
   cells.forEach((cell) => cell.addEventListener('click', play));
 
   const newPlayerbtn = document.querySelector('.addPlayers');
   newPlayerbtn.addEventListener('click', createPlayers);
+
+  const startGame = document.querySelector('.startGame');
+  startGame.addEventListener('click', function(){
+    document.getElementById('players_form').style.display = 'block';
+    this.style.display = 'none';
+  });
+
+  const restartGame = document.querySelector('.restartGame');
+  restartGame.addEventListener('click',resetGame);
 
   return {
     winCombinations, player1, player2, currentPlayer,

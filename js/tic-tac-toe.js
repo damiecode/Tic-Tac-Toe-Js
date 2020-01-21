@@ -47,7 +47,7 @@ const Game = (() => {
         Game.currentPlayer.score += 1;
         DisplayController.renderGameResult('win');
         const cells = document.querySelectorAll('.cell');
-        cells.forEach((cell) => cell.removeEventListener('click', play));
+        cells.forEach((cell) => { cell.removeEventListener('click', play); });
       } else if (!GameBoard.board.includes('')) {
         DisplayController.renderGameResult('draw');
       } else {
@@ -79,11 +79,11 @@ const Game = (() => {
     GameBoard.board = ['', '', '', '', '', '', '', '', ''];
     DisplayController.renderBoard();
     const cells = document.querySelectorAll('.cell');
-    cells.forEach((cell) => cell.addEventListener('click', play));
+    cells.forEach((cell) => { cell.addEventListener('click', play); });
   };
 
   const cells = document.querySelectorAll('.cell');
-  cells.forEach((cell) => cell.addEventListener('click', play));
+  cells.forEach((cell) => { cell.addEventListener('click', play); });
 
   const newPlayerbtn = document.querySelector('.addPlayers');
   newPlayerbtn.addEventListener('click', createPlayers);

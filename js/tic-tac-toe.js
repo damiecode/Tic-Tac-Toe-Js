@@ -5,11 +5,11 @@ const GameBoard = (() => {
   return { board };
 })();
 
-const PlayerFactory = (name, symbol) => ({ name, symbol });
+const PlayerFactory = (name, symbol,score) => ({ name, symbol, score });
 
 const Game = (() => {
-  const player1 = PlayerFactory('', 'X');
-  const player2 = PlayerFactory('', 'O');
+  const player1 = PlayerFactory('', 'X', 0);
+  const player2 = PlayerFactory('', 'O', 0);
   let currentPlayer = player1;
 
   const winCombinations = (arr) => {
@@ -43,6 +43,7 @@ const Game = (() => {
       GameBoard.board[index] = Game.currentPlayer.symbol;
       const winCheck = winCombinations(GameBoard.board);
       if (winCheck) {
+        Game.currentPlayer.score++;
         DisplayController.renderGameResult('win');
         const cells = document.querySelectorAll('.cell');
         cells.forEach((cell) => cell.removeEventListener('click', play));
@@ -54,6 +55,7 @@ const Game = (() => {
     }
 
     DisplayController.renderBoard();
+    DisplayController.renderPlayers();
   };
 
   const createPlayers = (event) => {
@@ -71,9 +73,13 @@ const Game = (() => {
   };
 
   const resetGame = () => {
+    const resetgameResult = document.querySelector('.game_result');
+    resetgameResult.style.display = 'none';
     GameBoard.board = ['', '', '', '', '', '', '', '', ''];
     DisplayController.renderBoard();
-  };  
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach((cell) => cell.addEventListener('click', play));
+  }; 
 
   const cells = document.querySelectorAll('.cell');
   cells.forEach((cell) => cell.addEventListener('click', play));
@@ -107,8 +113,8 @@ const DisplayController = (() => {
   const renderPlayers = () => {
     const divPlayers = document.querySelector('.players');
     divPlayers.innerHTML = `
-    <p>Player 'X': ${Game.player1.name}</p>
-    <p>Player 'O': ${Game.player2.name}</p>
+    <p>Player 'X': ${Game.player1.name} ${Game.player1.score} </p>
+    <p>Player 'O': ${Game.player2.name} ${Game.player2.score}</p>
     `;
   };
 
@@ -119,6 +125,7 @@ const DisplayController = (() => {
     } else if (exitCond === 'draw') {
       gameResult.innerHTML = "It's a Draw!";
     }
+    gameResult.style.display = 'block';
   };
 
   window.addEventListener('load', renderBoard);

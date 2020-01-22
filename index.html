@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <main>
+      <h2>Tic Tac Toe Game</h2>
+      <form id="players_form">
+        <label for="player1_name">Player 1 Name:</label>
+        <input id="player1_name" type="text" name="player1_name">
+
+        <label for="player2_name">Player 2 Name:</label>
+        <input id="player2_name" type="text" name="player2_name">
+
+        <button class="addPlayers" type="button">Create Players</button>
+      </form>
+      
+      <button class="startGame" type="button">Start</button>
+      <div id="board">
+        <button class="restartGame" type="button">Play Again</button>
+        <h3 class="game_result"></h3>
+        <table id="players_table">
+          <tr id='row1'>
+            <td class="cell" data-cell="0"></td>
+            <td class="cell" data-cell="1"></td>
+            <td class="cell" data-cell="2"></td>
+          </tr>
+          <tr id='row2'>
+            <td class="cell" data-cell="3"></td>
+            <td class="cell" data-cell="4"></td>
+            <td class="cell" data-cell="5"></td>
+          </tr>
+          <tr id='row3'>
+            <td class="cell" data-cell="6"></td>
+            <td class="cell" data-cell="7"></td>
+            <td class="cell" data-cell="8"></td>
+          </tr>
+        </table>
+      </div>
+      <div class="players">
+      </div>
+    </main>
+    <script src="js/tic-tac-toe.js" async defer></script>
+  </body>
+</html>

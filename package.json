@@ -1,0 +1,23 @@
+{
+  "name": "Tic-Tac-Toe-Js",
+  "version": "1.0.0",
+  "description": "> ​ We’re making a Tic Tac Toe game you can play in your browser!.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damiecode/Tic-Tac-Toe-Js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/damiecode/Tic-Tac-Toe-Js/issues"
+  },
+  "homepage": "https://github.com/damiecode/Tic-Tac-Toe-Js#readme",
+  "devDependencies": {
+    "jest": "^25.1.0"
+  }
+}

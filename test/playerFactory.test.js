@@ -1,29 +1,20 @@
-// import PlayerFactory from '../src/js/playerFactory';
-// import Game from '../src/js/play';
-// import DisplayController from '../src/js/displayController';
+import PlayerFactory from '../src/js/playerFactory';
 
-// describe('player factory', () => {
-//     const player1 = PlayerFactory('', 'X', 0);
-//     const player2 = PlayerFactory('', 'O', 0);
+let player1 = PlayerFactory('Damie', 'X', 0);
+let player2 = PlayerFactory('Miguel', 'O', 1);  
 
-//     const newPlayerbtn = document.querySelector('.addPlayers');
-//   newPlayerbtn.addEventListener('click', createPlayers);
+it('checks if player has a name', () => {
+  expect(player1.name).toBe('Damie');
+  expect(player2.name).toBe('Miguel');
+  expect(player1.name === 'Miguel').toEqual(false);
+});
 
-//   const startGame = document.querySelector('.startGame');
-//   startGame.addEventListener('click', () => {
-//     document.getElementById('players_form').style.display = 'block';
-//     startGame.style.display = 'none';
-//   });
+it('checks if player has a symbol', () => {
+  expect(player1.symbol).toBe('X');
+  expect(player2.symbol).toBe('O');
+});
 
-//     beforeEach(() => {
-//         player1.createPlayers();
-//         player2.createPlayers();
-//         player1.startGame();
-//         player2.startGame();
-//         player1 = currentPlayer;
-//       });
-     
-//     it('checks if the game starts with player1', () => {
-//         expect(Game.currentPlayer).toBe(player1);
-//     });
-// });
+it('checks if player has a score', () => {
+  expect(player1.score).toBe(0);
+  expect(player2.score).toBe(1);
+});

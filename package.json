@@ -4,7 +4,9 @@
   "description": "> ​ We’re making a Tic Tac Toe game you can play in your browser!.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,7 @@
   },
   "homepage": "https://github.com/damiecode/Tic-Tac-Toe-Js#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.8.4",
     "jest": "^25.1.0"
   },
   "dependencies": {

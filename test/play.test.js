@@ -2,9 +2,8 @@ import Game from '../src/js/play';
 import PlayerFactory from '../src/js/playerFactory';
 import GameBoard from '../src/js/gameboard';
 
-let player1 = PlayerFactory('Damie', 'X', 0);
-let player2 = PlayerFactory('Miguel', 'O', 1);
-let currentPlayer = player1;
+const player1 = PlayerFactory('Damie', 'X', 0);
+const currentPlayer = player1;
 
 test('should check if current player is Player1', () => {
     expect(currentPlayer.name).toBe('Damie');

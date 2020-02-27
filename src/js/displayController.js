@@ -1,4 +1,5 @@
 import GameBoard from './gameboard';
+// eslint-disable-next-line import/no-cycle
 import Game from './play';
 
 const DisplayController = (() => {

@@ -1,7 +1,7 @@
 import PlayerFactory from '../src/js/playerFactory';
 
-let player1 = PlayerFactory('Damie', 'X', 0);
-let player2 = PlayerFactory('Miguel', 'O', 1);  
+const player1 = PlayerFactory('Damie', 'X', 0);
+const player2 = PlayerFactory('Miguel', 'O', 1);
 
 it('checks if player has a name', () => {
   expect(player1.name).toBe('Damie');

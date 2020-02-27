@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import DisplayController from './displayController';
 import PlayerFactory from './playerFactory';
 import GameBoard from './gameboard';
@@ -76,29 +77,29 @@ const Game = (() => {
     cells.forEach((cell) => { cell.addEventListener('click', play); });
   };
 
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', () => {
     const cells = document.querySelectorAll('.cell');
     cells.forEach((cell) => { cell.addEventListener('click', play); });
-});
-
-
-document.addEventListener('DOMContentLoaded', function () {
-  const newPlayerbtn = document.querySelector('.addPlayers');
-  newPlayerbtn.addEventListener('click', createPlayers);
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-  const startGame = document.querySelector('.startGame');
-  startGame.addEventListener('click', () => {
-    document.getElementById('players_form').style.display = 'block';
-    startGame.style.display = 'none';
   });
-});
 
-document.addEventListener('DOMContentLoaded', function () {
-  const restartGame = document.querySelector('.restartGame');
-  restartGame.addEventListener('click', resetGame);
-});
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const newPlayerbtn = document.querySelector('.addPlayers');
+    newPlayerbtn.addEventListener('click', createPlayers);
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const startGame = document.querySelector('.startGame');
+    startGame.addEventListener('click', () => {
+      document.getElementById('players_form').style.display = 'block';
+      startGame.style.display = 'none';
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const restartGame = document.querySelector('.restartGame');
+    restartGame.addEventListener('click', resetGame);
+  });
 
   return {
     winCombinations, player1, player2, currentPlayer,

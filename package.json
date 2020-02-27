@@ -1,0 +1,36 @@
+{
+  "name": "Tic-Tac-Toe-Js",
+  "version": "1.0.0",
+  "description": "> ​ We’re making a Tic Tac Toe game you can play in your browser!.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damiecode/Tic-Tac-Toe-Js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/damiecode/Tic-Tac-Toe-Js/issues"
+  },
+  "homepage": "https://github.com/damiecode/Tic-Tac-Toe-Js#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.8.4",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "jest": "^25.1.0"
+  },
+  "dependencies": {
+    "loadash": "^1.0.0",
+    "resolve-cwd": "^3.0.0",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}

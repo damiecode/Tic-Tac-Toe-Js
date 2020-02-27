@@ -1,12 +1,7 @@
-/* eslint-disable no-use-before-define */
-/* eslint-env browser */
-
-const GameBoard = (() => {
-  const board = ['', '', '', '', '', '', '', '', ''];
-  return { board };
-})();
-
-const PlayerFactory = (name, symbol, score) => ({ name, symbol, score });
+// eslint-disable-next-line import/no-cycle
+import DisplayController from './displayController';
+import PlayerFactory from './playerFactory';
+import GameBoard from './gameboard';
 
 const Game = (() => {
   const player1 = PlayerFactory('', 'X', 0);
@@ -82,53 +77,33 @@ const Game = (() => {
     cells.forEach((cell) => { cell.addEventListener('click', play); });
   };
 
-  const cells = document.querySelectorAll('.cell');
-  cells.forEach((cell) => { cell.addEventListener('click', play); });
-
-  const newPlayerbtn = document.querySelector('.addPlayers');
-  newPlayerbtn.addEventListener('click', createPlayers);
-
-  const startGame = document.querySelector('.startGame');
-  startGame.addEventListener('click', () => {
-    document.getElementById('players_form').style.display = 'block';
-    startGame.style.display = 'none';
+  document.addEventListener('DOMContentLoaded', () => {
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach((cell) => { cell.addEventListener('click', play); });
   });
 
-  const restartGame = document.querySelector('.restartGame');
-  restartGame.addEventListener('click', resetGame);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const newPlayerbtn = document.querySelector('.addPlayers');
+    newPlayerbtn.addEventListener('click', createPlayers);
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const startGame = document.querySelector('.startGame');
+    startGame.addEventListener('click', () => {
+      document.getElementById('players_form').style.display = 'block';
+      startGame.style.display = 'none';
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const restartGame = document.querySelector('.restartGame');
+    restartGame.addEventListener('click', resetGame);
+  });
 
   return {
     winCombinations, player1, player2, currentPlayer,
   };
 })();
 
-const DisplayController = (() => {
-  const renderBoard = () => {
-    const cells = document.querySelectorAll('.cell');
-    cells.forEach((cell) => {
-      const index = cell.getAttribute('data-cell');
-      cell.innerHTML = GameBoard.board[index];
-    });
-  };
-
-  const renderPlayers = () => {
-    const divPlayers = document.querySelector('.players');
-    divPlayers.innerHTML = `
-    <p>Player 'X': ${Game.player1.name} ${Game.player1.score} </p>
-    <p>Player 'O': ${Game.player2.name} ${Game.player2.score}</p>
-    `;
-  };
-
-  const renderGameResult = (exitCond) => {
-    const gameResult = document.querySelector('.game_result');
-    if (exitCond === 'win') {
-      gameResult.innerHTML = `${Game.currentPlayer.name} (${Game.currentPlayer.symbol}) wins the game!`;
-    } else if (exitCond === 'draw') {
-      gameResult.innerHTML = "It's a Draw!";
-    }
-    gameResult.style.display = 'block';
-  };
-
-  window.addEventListener('load', renderBoard);
-  return { renderBoard, renderPlayers, renderGameResult };
-})();
+export default Game;

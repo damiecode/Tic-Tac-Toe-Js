@@ -11,7 +11,7 @@ Additional description about the project and its features.
 
 ## Built With
 
-- HTML/CSS,
+- HTML/CSS
 - Javascript
 
 ## Live Demo
@@ -39,8 +39,9 @@ git clone https://github.com/damiecode/Tic-Tac-Toe-Js.git
 
 👤 **Damilola Ale**
 
+- Email: _codenlyn@gmail.com_
 - Github: [@damiecode](https://github.com/damiecode)
-
+- Twitter: [@iamlildamski](https://twitter.com/iamlildamski)
 
 ## Show your support
 
